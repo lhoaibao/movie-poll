@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Question
+from .models import Question, Choice
 from django.urls import reverse
 # Create your views here.
 def index(request):
