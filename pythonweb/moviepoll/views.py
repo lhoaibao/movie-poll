@@ -16,7 +16,11 @@ def detail(request, question_id):
 
 def result(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'moviepoll/result.html', {'question':question})
+    total_vote = 0
+    print(question.choice_set.all)
+    for choice in question.choice_set.all():
+        total_vote += choice.votes
+    return render(request, 'moviepoll/result.html', {'question':question, 'total_vote':total_vote})
 
 
 def vote(request, question_id):
