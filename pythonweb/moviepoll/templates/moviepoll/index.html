@@ -3,13 +3,15 @@
 
 {% block content %}
 {% if lastest_question_list %}
+  <div class="list_question">
       {% for question in lastest_question_list %}
           <a href="{% url 'moviepoll:detail' question.id %}">
-            <div class="jumbotron text-align question">
+            <div class="question">
                 {{question.question_text}}
             </div>
           </a>
       {% endfor %}
+  </div>
 {% else %}
     <p>
         No polls are available.
