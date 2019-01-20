@@ -1,43 +1,18 @@
+{% extends "./base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <title>Intek Movie Poll</title>
-</head>
-<body style="height:100%">
-    <header class="navbar navbar-light bg-light">
-        <a href="{% url 'moviepoll:index' %}" class="navbar-brand">
-            <img src="{% static 'intek_logo.jpg' %}" alt="logo" style="width:50px;height:50px">
-            <strong>INTEK MOVIE POLL</strong>
-        </a>
-    </header>
-    {% if lastest_question_list %}
-        <ul>
-            {% for question in lastest_question_list %}
-            <li>
-                <a href="{% url 'moviepoll:detail' question.id %}">
-                    {{question.question_text}}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>
-            No polls are available.
-        </p>
-    {% endif %}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-<footer class="fix-bottom">
-    <div class="footer-copyright text-center py-3">
-        <p>CREATED BY BAO</p>
-    </div>
-</footer>
-</html>
+{% block content %}
+{% if lastest_question_list %}
+      {% for question in lastest_question_list %}
+          <a href="{% url 'moviepoll:detail' question.id %}">
+            <div class="jumbotron text-align question">
+                {{question.question_text}}
+            </div>
+          </a>
+      {% endfor %}
+{% else %}
+    <p>
+        No polls are available.
+    </p>
+{% endif %}
+{% endblock %}
